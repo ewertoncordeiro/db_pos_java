@@ -1,0 +1,10 @@
+com\utfpr\backend_fun_dp\service\FuncionarioService.class
+com\utfpr\backend_fun_dp\config\SpringDataConfig.class
+com\utfpr\backend_fun_dp\repository\DepartamentoRepository.class
+com\utfpr\backend_fun_dp\controller\DepartamentoController.class
+com\utfpr\backend_fun_dp\controller\FuncionarioController.class
+com\utfpr\backend_fun_dp\entity\Funcionario.class
+com\utfpr\backend_fun_dp\entity\Departamento.class
+com\utfpr\backend_fun_dp\service\DepartamentoService.class
+com\utfpr\backend_fun_dp\BackendFunDpApplication.class
+com\utfpr\backend_fun_dp\repository\FuncionarioRepository.class
