@@ -4,6 +4,7 @@ import com.utfpr.backend_fun_dp.entity.Funcionario;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
@@ -52,6 +53,11 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
     //@NamedNativeQuery
     @org.springframework.data.jpa.repository.Query(name = "Funcionario.findByNomeContaining", nativeQuery = true)
     List<Funcionario> findFuncionariosByNomeContaining(@Param("nome") String nome);
+
+    //procedure aumentar salario
+
+    @Procedure(name = "AtualizaSalario")
+    void atualizaSalario(int percentual);
 
 }
 
