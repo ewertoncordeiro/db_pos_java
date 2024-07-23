@@ -21,4 +21,27 @@ public class Departamento {
     @OneToMany(mappedBy = "departamento")
     private Set<Funcionario> funcionarios;
 
+    public Long getCodDp() {
+        return codDp;
+    }
+
+    public Set<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
+
+    public String getNomeDp() {
+        return nomeDp;
+    }
+
+    public void setCodDp(Long codDp) {
+        this.codDp = codDp;
+    }
+
+    public void setNomeDp(String nomeDp) {
+        this.nomeDp = nomeDp;
+    }
+
+    public void setFuncionarios(Set<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
+    }
 }
