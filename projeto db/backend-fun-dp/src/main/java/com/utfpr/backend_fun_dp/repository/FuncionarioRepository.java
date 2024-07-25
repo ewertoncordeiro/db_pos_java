@@ -2,6 +2,7 @@ package com.utfpr.backend_fun_dp.repository;
 
 import com.utfpr.backend_fun_dp.entity.Funcionario;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,7 +21,9 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
             @Param("qtdDependentes") Integer qtdDependentes);
 
     //2. Listar todos os funcionários de um determinado departamento por JPQL via @Query
-    @Query("SELECT f FROM Funcionario f JOIN f.departamento d WHERE d.nomeDp = :nomeDp")
+    @EntityGraph(attributePaths = "departamento")
+  //  @Query("SELECT f FROM Funcionario f JOIN f.departamento d WHERE d.nomeDp = :nomeDp")
+    @Query("SELECT f FROM Funcionario f WHERE f.departamento.nomeDp = :nomeDp")
     List<Funcionario> findFuncionariosByDepartamentoNome(@Param("nomeDp") String nomeDp);
 
     //4. Listar o primeiro funcionário que tem o maior salário.

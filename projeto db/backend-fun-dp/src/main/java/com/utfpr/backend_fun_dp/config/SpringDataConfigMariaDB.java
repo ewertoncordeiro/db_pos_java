@@ -14,7 +14,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.utfpr.backend_fun_dp.repository") // Ajuste para o seu pacote
+@EnableJpaRepositories(basePackages = "com.utfpr.backend_fun_dp.repository")
 
 
 public class SpringDataConfigMariaDB {
@@ -53,7 +53,7 @@ public class SpringDataConfigMariaDB {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
-        em.setPackagesToScan("com.utfpr.backend_fun_dp.entity"); // Ajuste para o seu pacote
+        em.setPackagesToScan("com.utfpr.backend_fun_dp.entity");
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         em.getJpaPropertyMap().put("hibernate.dialect", hibernateDialect);

@@ -41,7 +41,9 @@ public class Departamento {
         this.nomeDp = nomeDp;
     }
 
+    @OneToMany(fetch = FetchType.EAGER)
     public void setFuncionarios(Set<Funcionario> funcionarios) {
         this.funcionarios = funcionarios;
     }
+
 }

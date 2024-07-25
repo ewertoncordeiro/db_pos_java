@@ -16,6 +16,11 @@ public class FuncionarioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
+    //ajuste do erro ao utilizar commandrunner
+    public Funcionario save(Funcionario funcionario) {
+        return funcionarioRepository.save(funcionario);
+    }
+
     public Funcionario getFuncionariosByNomeAndQtdDependentes(String nome, Integer qtdDependentes) {
         return funcionarioRepository.findFuncionariosByNomeAndQtdDependentes(nome, qtdDependentes);
     }
