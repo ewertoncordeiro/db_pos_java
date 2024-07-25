@@ -41,11 +41,12 @@ public class BackendFunDpApplication {
 		//	for (Funcionario f : funcionarioService.getFuncionariosByDepartamentoNome("suporte")) {
 		//		log.info(f.toString());
 
+			//diogo
 				log.info("getFuncionariosByDepartamentoNome");
-				for (Funcionario z : funcionarioService.getFuncionariosWithoutDependentesOrderByNameAsc()) {
+				 Funcionario z = funcionarioService.getTopFuncionariosBySalario();
 					log.info(z.toString());
 
-				}
+
 			}
 			;
 		}
