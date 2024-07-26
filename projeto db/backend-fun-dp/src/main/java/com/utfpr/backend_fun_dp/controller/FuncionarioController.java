@@ -3,9 +3,7 @@ package com.utfpr.backend_fun_dp.controller;
 import com.utfpr.backend_fun_dp.entity.Funcionario;
 import com.utfpr.backend_fun_dp.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -66,5 +64,31 @@ public class FuncionarioController {
     @GetMapping("/funcionarios-por-nome")
     public List<Funcionario> getFuncionariosByNomeContaining(@RequestParam String nome) {
         return funcionarioService.getFuncionariosByNomeContaining(nome);
+    }
+
+    @PostMapping("/atualizarSalarios")
+    public void atualizarSalarios(@RequestParam int percentual) {
+        funcionarioService.atualizarSalarios(percentual);
+    }
+
+    @GetMapping("/funcionarios-sem-dependentes-param")
+    public List<Funcionario> getFuncionariosSemDependentes(@RequestParam String departamentoNome) {
+        return funcionarioService.getFuncionariosByDepartamentoWithoutDependentes(departamentoNome);
+    }
+
+    //POST /trocar-departamento?departamentoAtualId=1&novoDepartamentoId=2
+    @PostMapping("/trocar-departamento")
+    public String trocarDepartamento(
+            @RequestParam Long departamentoAtualId,
+            @RequestParam Long novoDepartamentoId) {
+        int updatedCount = funcionarioService.trocarDepartamento(departamentoAtualId, novoDepartamentoId);
+        return "Número de funcionários atualizados: " + updatedCount;
+    }
+     //DELETE /excluir-funcionarios?departamentoId=1
+    @DeleteMapping("/excluir-funcionarios")
+    public String excluirFuncionarios(
+            @RequestParam Long departamentoId) {
+        int deletedCount = funcionarioService.excluirFuncionariosPorDepartamento(departamentoId);
+        return "Número de funcionários excluídos: " + deletedCount;
     }
 }

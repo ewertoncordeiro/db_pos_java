@@ -5,15 +5,22 @@ import com.utfpr.backend_fun_dp.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 
 public class FuncionarioService {
 
     @Autowired
     private FuncionarioRepository funcionarioRepository;
+
+    //ajuste do erro ao utilizar commandrunner
+    public Funcionario save(Funcionario funcionario) {
+        return funcionarioRepository.save(funcionario);
+    }
 
     public Funcionario getFuncionariosByNomeAndQtdDependentes(String nome, Integer qtdDependentes) {
         return funcionarioRepository.findFuncionariosByNomeAndQtdDependentes(nome, qtdDependentes);
@@ -50,5 +57,22 @@ public class FuncionarioService {
 
     public List<Funcionario> getFuncionariosByNomeContaining(String nome) {
         return funcionarioRepository.findFuncionariosByNomeContaining(nome);
+    }
+
+
+    public void atualizarSalarios(int percentual) {
+        funcionarioRepository.atualizaSalario(percentual);
+    }
+
+    public List<Funcionario> getFuncionariosByDepartamentoWithoutDependentes(String departamentoNome) {
+        return funcionarioRepository.findFuncionariosByDepartamentoWithoutDependentes(departamentoNome);
+    }
+
+    public int trocarDepartamento(Long departamentoAtualId, Long novoDepartamentoId) {
+        return funcionarioRepository.updateDepartamento(departamentoAtualId, novoDepartamentoId);
+    }
+
+    public int excluirFuncionariosPorDepartamento(Long departamentoId) {
+        return funcionarioRepository.deleteByDepartamentoId(departamentoId);
     }
 }
