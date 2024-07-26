@@ -33,6 +33,10 @@ public class Funcionario {
     @JoinColumn(name = "cod_dp", nullable = false)
     private Departamento departamento;
 
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+    }
+
     private String nome;
     private Integer qtd_dependentes;
 

@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
@@ -25,27 +26,36 @@ public class BackendFunDpApplication {
 
 
 	@Bean
-	public CommandLineRunner demo(DepartamentoService departamentoService) {
-
+	public CommandLineRunner demo(DepartamentoService departamentoService, FuncionarioService funcionarioService) {
 
 		return (arg) -> {
-		//	log.info("getFuncionariosByDepartamentoNome");
-		//	for (Funcionario f : funcionarioService.getFuncionariosByDepartamentoNome("suporte")) {
-		//		log.info(f.toString());
+			log.info("----------");
+			log.info("----------");
+			log.info("getFuncionariosByDepartamentoNome");
+			for (Funcionario f : funcionarioService.getFuncionariosByDepartamentoNome("suporte")) {
+				log.info(f.toString());
+			}
 
-				log.info("getFirstDepartamento");
-				Departamento f = departamentoService.getFirstDepartamento(); {
-					//log.info(f.toString());
+			log.info("----------");
+			log.info("----------");
+			log.info("getFirstDepartamento");
+			Departamento d = departamentoService.getFirstDepartamento();
+				{log.info(d.toString());
+			}
 
-				//diogo
-			//		log.info("getFuncionariosByDepartamentoNome");
-			//		 Departamento z = departamentoService.getFirstDepartamento();
-			//				log.info(z.toString());
-		//	};
+			log.info("----------");
+			log.info("----------");
+			log.info("getTop3FuncionariosBySalario");
+			for (Funcionario f1 : funcionarioService.getTop3FuncionariosBySalario()) {
+				log.info(f1.toString());
+			}
+		};
+	};
+}
 
 
 
-}}
+
 
 
 

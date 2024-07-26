@@ -21,4 +21,15 @@ public class Departamento {
     @OneToMany(mappedBy = "departamento")
     private Set<Funcionario> funcionarios;
 
+    public String getNomeDp() {
+        return nomeDp;
+    }
+
+    @Override
+    public String toString() {
+        return "Departamento{" +
+                "codDp=" + codDp +
+                ", nomeDp='" + nomeDp + '\'' +
+                '}';
+    }
 }

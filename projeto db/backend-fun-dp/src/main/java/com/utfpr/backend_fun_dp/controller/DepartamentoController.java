@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-    public class DepartamentoController {
+public class DepartamentoController {
 
-        @Autowired
-        private DepartamentoService departamentoService;
+    @Autowired
+    private DepartamentoService departamentoService;
 
     @GetMapping("/primeiro-departamento")
     public Departamento getFirstDepartamento() {
-            return departamentoService.getFirstDepartamento();
-        }
+        return departamentoService.getFirstDepartamento();
+    }
 
     @PostMapping("/salvar-departamento-com-funcionario")
     public Departamento salvarDepartamentoComFuncionario(
