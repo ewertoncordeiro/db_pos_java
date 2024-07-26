@@ -2,9 +2,13 @@ package com.utfpr.backend_fun_dp.repository;
 
 import com.utfpr.backend_fun_dp.entity.Funcionario;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,7 +21,9 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
             @Param("qtdDependentes") Integer qtdDependentes);
 
     //2. Listar todos os funcionários de um determinado departamento por JPQL via @Query
-    @Query("SELECT f FROM Funcionario f JOIN f.departamento d WHERE d.nomeDp = :nomeDp")
+    @EntityGraph(attributePaths = "departamento")
+  //  @Query("SELECT f FROM Funcionario f JOIN f.departamento d WHERE d.nomeDp = :nomeDp")
+    @Query("SELECT f FROM Funcionario f WHERE f.departamento.nomeDp = :nomeDp")
     List<Funcionario> findFuncionariosByDepartamentoNome(@Param("nomeDp") String nomeDp);
 
     //4. Listar o primeiro funcionário que tem o maior salário.
@@ -53,5 +59,34 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
     @org.springframework.data.jpa.repository.Query(name = "Funcionario.findByNomeContaining", nativeQuery = true)
     List<Funcionario> findFuncionariosByNomeContaining(@Param("nome") String nome);
 
+    //1. procedure aumentar salario
+
+    @Procedure(name = "AtualizaSalario")
+    void atualizaSalario(int percentual);
+
+   //2.listar funcionarios com parametro
+    @Query(value = "SELECT f.* FROM funcionario f " +
+            "INNER JOIN departamento d ON d.cod_Dp = f.cod_dp " +
+            "WHERE d.nome_Dp = :departamentoNome " +
+            "AND f.qtd_dependentes = 0", nativeQuery = true)
+    List<Funcionario> findFuncionariosByDepartamentoWithoutDependentes(@Param("departamentoNome") String departamentoNome);
+
+    //3. alterar departamento
+    @Modifying
+    @Transactional
+    @Query("UPDATE Funcionario f SET f.departamento.codDp = :novoDepartamentoId WHERE f.departamento.codDp = :departamentoAtualId")
+    int updateDepartamento(@Param("departamentoAtualId") Long departamentoAtualId, @Param("novoDepartamentoId") Long novoDepartamentoId);
+
+    //4- deletar funcionarios
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Funcionario f WHERE f.departamento.codDp = :departamentoId")
+    int deleteByDepartamentoId(@Param("departamentoId") Long departamentoId);
 }
+
+
+
+
+
+
 

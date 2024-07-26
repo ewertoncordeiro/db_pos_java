@@ -2,6 +2,7 @@ package com.utfpr.backend_fun_dp.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Setter;
 
 @Entity
 @Table(name = "funcionario")
@@ -27,9 +28,14 @@ public class Funcionario {
     @Column(name = "cod_fun", nullable = false)
     private Long id;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "cod_dp", nullable = false)
     private Departamento departamento;
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+    }
 
     private String nome;
     private Integer qtd_dependentes;
@@ -39,5 +45,16 @@ public class Funcionario {
 
     private Double salario;
 
+    @Override
+    public String toString() {
+        return "Funcionario{" +
+                "id=" + id +
+                ", departamento=" + (departamento != null ? departamento.getNomeDp() : "N/A") +
+                ", nome='" + nome + '\'' +
+                ", qtd_dependentes=" + qtd_dependentes +
+                ", cargo='" + cargo + '\'' +
+                ", salario=" + salario +
+                '}';
+    }
 
 }
