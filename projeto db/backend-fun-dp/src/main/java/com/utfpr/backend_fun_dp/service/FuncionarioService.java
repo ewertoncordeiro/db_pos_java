@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 
 public class FuncionarioService {
 
@@ -58,7 +59,7 @@ public class FuncionarioService {
         return funcionarioRepository.findFuncionariosByNomeContaining(nome);
     }
 
-    @Transactional
+
     public void atualizarSalarios(int percentual) {
         funcionarioRepository.atualizaSalario(percentual);
     }

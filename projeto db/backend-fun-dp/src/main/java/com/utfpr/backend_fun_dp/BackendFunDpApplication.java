@@ -25,31 +25,29 @@ public class BackendFunDpApplication {
 
 
 	@Bean
-	public CommandLineRunner demo(DepartamentoService departamentoService, FuncionarioService funcionarioService) {
+	public CommandLineRunner demo(DepartamentoService departamentoService) {
 
-		//	Departamento departamento = new Departamento();
-
-
-		//	Funcionario funcionario = new Funcionario();
-
-		// Salvar o departamento e os funcionários
-		//	departamento = departamentoService.save(departamento);
-		//	funcionarioService.save(funcionario);
 
 		return (arg) -> {
-			log.info("getFuncionariosByDepartamentoNome");
+		//	log.info("getFuncionariosByDepartamentoNome");
 		//	for (Funcionario f : funcionarioService.getFuncionariosByDepartamentoNome("suporte")) {
 		//		log.info(f.toString());
 
-			//diogo
-				log.info("getFuncionariosByDepartamentoNome");
-				 Funcionario z = funcionarioService.getTopFuncionariosBySalario();
-					log.info(z.toString());
+				log.info("getFirstDepartamento");
+				Departamento f = departamentoService.getFirstDepartamento(); {
+					//log.info(f.toString());
+
+				//diogo
+			//		log.info("getFuncionariosByDepartamentoNome");
+			//		 Departamento z = departamentoService.getFirstDepartamento();
+			//				log.info(z.toString());
+		//	};
 
 
-			}
-			;
-		}
-	}
+
+}}
+
+
+
 
 

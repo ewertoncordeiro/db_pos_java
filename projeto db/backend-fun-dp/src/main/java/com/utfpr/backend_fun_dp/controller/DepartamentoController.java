@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
         @Autowired
         private DepartamentoService departamentoService;
 
-        // testando
-        @GetMapping("/primeiro-departamento")
-        public Departamento getFirstDepartamento() {
+    @GetMapping("/primeiro-departamento")
+    public Departamento getFirstDepartamento() {
             return departamentoService.getFirstDepartamento();
         }
 

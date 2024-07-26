@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 
 public class DepartamentoService {
 
@@ -18,6 +19,7 @@ public class DepartamentoService {
 
     @Autowired
     private FuncionarioRepository funcionarioRepository;
+
 
     public Departamento getFirstDepartamento() {
         return departamentoRepository.findFirstByOrderByIdAsc(PageRequest.of(0, 1));

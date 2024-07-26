@@ -2,6 +2,7 @@ package com.utfpr.backend_fun_dp.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Setter;
 
 @Entity
 @Table(name = "funcionario")
@@ -27,13 +28,10 @@ public class Funcionario {
     @Column(name = "cod_fun", nullable = false)
     private Long id;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "cod_dp", nullable = false)
     private Departamento departamento;
-
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
-    }
 
     private String nome;
     private Integer qtd_dependentes;
@@ -43,47 +41,16 @@ public class Funcionario {
 
     private Double salario;
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    @Override
+    public String toString() {
+        return "Funcionario{" +
+                "id=" + id +
+                ", departamento=" + (departamento != null ? departamento.getNomeDp() : "N/A") +
+                ", nome='" + nome + '\'' +
+                ", qtd_dependentes=" + qtd_dependentes +
+                ", cargo='" + cargo + '\'' +
+                ", salario=" + salario +
+                '}';
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setQtd_dependentes(Integer qtd_dependentes) {
-        this.qtd_dependentes = qtd_dependentes;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-
-    public void setSalario(Double salario) {
-        this.salario = salario;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Departamento getDepartamento() {
-        return departamento;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public Integer getQtd_dependentes() {
-        return qtd_dependentes;
-    }
-
-    public String getCargo() {
-        return cargo;
-    }
-
-    public Double getSalario() {
-        return salario;
-    }
 }
