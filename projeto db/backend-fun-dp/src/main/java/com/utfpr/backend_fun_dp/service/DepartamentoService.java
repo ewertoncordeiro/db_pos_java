@@ -20,7 +20,6 @@ public class DepartamentoService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
-
     public Departamento getFirstDepartamento() {
         return departamentoRepository.findFirstByOrderByIdAsc(PageRequest.of(0, 1));
     }
