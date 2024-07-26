@@ -20,7 +20,6 @@ import lombok.Setter;
         resultClass = Funcionario.class
 )
 
-
 public class Funcionario {
 
     @Id
@@ -32,10 +31,6 @@ public class Funcionario {
     @ManyToOne
     @JoinColumn(name = "cod_dp", nullable = false)
     private Departamento departamento;
-
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
-    }
 
     private String nome;
     private Integer qtd_dependentes;

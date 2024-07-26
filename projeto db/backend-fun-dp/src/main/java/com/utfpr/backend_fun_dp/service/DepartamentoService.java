@@ -25,16 +25,7 @@ public class DepartamentoService {
         return departamentoRepository.findFirstByOrderByIdAsc(PageRequest.of(0, 1));
     }
 
-    /*
     //5- salvar dp e associar um funcionario
-    @Transactional
-    public Departamento salvarDepartamentoComFuncionario(Departamento departamento, Funcionario funcionario) {
-        Departamento departamentoSalvo = departamentoRepository.save(departamento);
-        funcionario.setDepartamento(departamentoSalvo);
-        funcionarioRepository.save(funcionario);
-        return departamentoSalvo;
-    }*/
-
     public Departamento salvarDepartamentoComFuncionario(Departamento departamento, Funcionario funcionario) {
         if (departamento == null) {
             throw new IllegalArgumentException("Departamento não pode ser nulo");
@@ -42,14 +33,9 @@ public class DepartamentoService {
         if (funcionario == null) {
             throw new IllegalArgumentException("Funcionario não pode ser nulo");
         }
-
-        // Salva o departamento no repositório
         Departamento departamentoSalvo = departamentoRepository.save(departamento);
-
-        // Define o departamento salvo no funcionário e salva o funcionário no repositório
         funcionario.setDepartamento(departamentoSalvo);
         funcionarioRepository.save(funcionario);
-
         return departamentoSalvo;
     }
 }

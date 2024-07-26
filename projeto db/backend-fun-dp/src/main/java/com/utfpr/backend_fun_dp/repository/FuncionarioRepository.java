@@ -60,7 +60,6 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
     List<Funcionario> findFuncionariosByNomeContaining(@Param("nome") String nome);
 
     //1. procedure aumentar salario
-
     @Procedure(name = "AtualizaSalario")
     void atualizaSalario(int percentual);
 

@@ -17,11 +17,6 @@ public class FuncionarioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
-    //ajuste do erro ao utilizar commandrunner
-    public Funcionario save(Funcionario funcionario) {
-        return funcionarioRepository.save(funcionario);
-    }
-
     public Funcionario getFuncionariosByNomeAndQtdDependentes(String nome, Integer qtdDependentes) {
         return funcionarioRepository.findFuncionariosByNomeAndQtdDependentes(nome, qtdDependentes);
     }
@@ -58,7 +53,6 @@ public class FuncionarioService {
     public List<Funcionario> getFuncionariosByNomeContaining(String nome) {
         return funcionarioRepository.findFuncionariosByNomeContaining(nome);
     }
-
 
     public void atualizarSalarios(int percentual) {
         funcionarioRepository.atualizaSalario(percentual);

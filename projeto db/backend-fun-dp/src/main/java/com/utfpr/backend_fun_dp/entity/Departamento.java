@@ -2,6 +2,8 @@ package com.utfpr.backend_fun_dp.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+
 import java.util.Set;
 
 @Entity
@@ -15,15 +17,12 @@ public class Departamento {
     @Column(name = "cod_Dp", nullable = false)
     private Long codDp;
 
+    @Getter
     @Column(name = "nome_Dp", nullable = false)
     private String nomeDp;
 
     @OneToMany(mappedBy = "departamento")
     private Set<Funcionario> funcionarios;
-
-    public String getNomeDp() {
-        return nomeDp;
-    }
 
     @Override
     public String toString() {
