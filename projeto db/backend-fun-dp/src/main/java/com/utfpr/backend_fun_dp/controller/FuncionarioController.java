@@ -3,7 +3,9 @@ package com.utfpr.backend_fun_dp.controller;
 import com.utfpr.backend_fun_dp.entity.Funcionario;
 import com.utfpr.backend_fun_dp.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -91,4 +93,10 @@ public class FuncionarioController {
         int deletedCount = funcionarioService.excluirFuncionariosPorDepartamento(departamentoId);
         return "Número de funcionários excluídos: " + deletedCount;
     }
+/*
+    @PostMapping("/salvarFun")
+    public ResponseEntity<Funcionario> salvarFuncionario(@RequestBody Funcionario funcionario) {
+        Funcionario funcionarioSalvo = funcionarioService.save(funcionario);
+        return ResponseEntity.ok(funcionarioSalvo);
+    }*/
 }
