@@ -25,31 +25,31 @@ public class DepartamentoService {
         return departamentoRepository.findFirstByOrderByIdAsc(PageRequest.of(0, 1));
     }
 
-    /*
+    public Departamento save(Departamento departamento) {
+        return departamentoRepository.save(departamento);
+    }
+
     //5- salvar dp e associar um funcionario
     @Transactional
-    public Departamento salvarDepartamentoComFuncionario(Departamento departamento, Funcionario funcionario) {
+    public Departamento salvarDepartamentoComFuncionario2(Departamento departamento, Funcionario funcionario) {
         Departamento departamentoSalvo = departamentoRepository.save(departamento);
         funcionario.setDepartamento(departamentoSalvo);
         funcionarioRepository.save(funcionario);
-        return departamentoSalvo;
-    }*/
-
-    public Departamento salvarDepartamentoComFuncionario(Departamento departamento, Funcionario funcionario) {
-        if (departamento == null) {
-            throw new IllegalArgumentException("Departamento não pode ser nulo");
-        }
-        if (funcionario == null) {
-            throw new IllegalArgumentException("Funcionario não pode ser nulo");
-        }
-
-        // Salva o departamento no repositório
-        Departamento departamentoSalvo = departamentoRepository.save(departamento);
-
-        // Define o departamento salvo no funcionário e salva o funcionário no repositório
-        funcionario.setDepartamento(departamentoSalvo);
-        funcionarioRepository.save(funcionario);
-
         return departamentoSalvo;
     }
+
+
+    // Método para salvar um departamento
+    public Departamento salvarDepartamento(Departamento departamento) {
+        return departamentoRepository.save(departamento);
+    }
+
+    //salvar fun e dp funcionando ok
+    @Transactional(readOnly = false)
+    public void salvarDepartamentoEFuncionario(Departamento departamento, Funcionario funcionario) {
+        departamentoRepository.save(departamento);
+        funcionario.setDepartamento(departamento);
+        funcionarioRepository.save(funcionario);
+    }
+
 }

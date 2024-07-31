@@ -18,7 +18,7 @@ public class Departamento {
     @Column(name = "nome_Dp", nullable = false)
     private String nomeDp;
 
-    @OneToMany(mappedBy = "departamento")
+    @OneToMany(mappedBy = "departamento", fetch = FetchType.EAGER)
     private Set<Funcionario> funcionarios;
 
     public String getNomeDp() {
