@@ -17,6 +17,10 @@ public class FuncionarioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> hotfix/teste_30_07
     public Funcionario getFuncionariosByNomeAndQtdDependentes(String nome, Integer qtdDependentes) {
         return funcionarioRepository.findFuncionariosByNomeAndQtdDependentes(nome, qtdDependentes);
     }
@@ -68,5 +72,13 @@ public class FuncionarioService {
 
     public int excluirFuncionariosPorDepartamento(Long departamentoId) {
         return funcionarioRepository.deleteByDepartamentoId(departamentoId);
+    }
+//salvar apenas o funcionario
+    @Transactional
+    public Funcionario save(Funcionario funcionario) {
+        if (funcionario == null) {
+            throw new IllegalArgumentException("Funcionário não pode ser nulo");
+        }
+        return funcionarioRepository.save(funcionario);
     }
 }
