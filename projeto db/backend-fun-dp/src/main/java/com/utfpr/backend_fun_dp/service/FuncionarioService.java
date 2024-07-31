@@ -17,10 +17,6 @@ public class FuncionarioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> hotfix/teste_30_07
     public Funcionario getFuncionariosByNomeAndQtdDependentes(String nome, Integer qtdDependentes) {
         return funcionarioRepository.findFuncionariosByNomeAndQtdDependentes(nome, qtdDependentes);
     }

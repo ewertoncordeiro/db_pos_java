@@ -22,13 +22,6 @@ public class DepartamentoController {
         return departamentoService.getFirstDepartamento();
     }
 
-    @PostMapping("/salvar-departamento-com-funcionario2")
-    public Departamento salvarDepartamentoComFuncionario(
-            @RequestBody Departamento departamento,
-            @RequestBody Funcionario funcionario) {
-        return departamentoService.salvarDepartamentoComFuncionario2(departamento, funcionario);
-    }
-
 
 //fubcionando ok salvar um do apenas
     @PostMapping("/salvarDP")
@@ -37,7 +30,7 @@ public class DepartamentoController {
         return ResponseEntity.ok(departamentoSalvo);
     }
 
-//neste formato funci0onou a inclusáo
+//neste formato funcionou a inclusáo
     @PostMapping("/salvarDeptEFuncionario")
     public ResponseEntity<String> salvarDeptEFuncionario(@RequestBody DepartamentoFuncionarioRequest request) {
         Departamento departamento = request.getDepartamento();
