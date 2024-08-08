@@ -3,6 +3,7 @@ package com.utfpr.backend_fun_dp.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 
 public class Departamento {
 
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_Dp", nullable = false)

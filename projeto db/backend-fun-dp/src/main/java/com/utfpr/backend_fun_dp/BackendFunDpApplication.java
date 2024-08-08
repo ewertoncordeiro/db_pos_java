@@ -24,6 +24,18 @@ public class BackendFunDpApplication {
 	@Bean
 	public CommandLineRunner demo(DepartamentoService departamentoService, FuncionarioService funcionarioService) {
 
+		// Crie e configure um novo Funcionario
+
+			// Se não encontrado, crie um novo departamento
+			Departamento dp = new Departamento();
+			dp.setCodDp(1L);
+
+
+		Funcionario novoFuncionario = new Funcionario();
+		novoFuncionario.setNome("João Silva");
+		novoFuncionario.setSalario(5000.0);
+		novoFuncionario.setDepartamento(dp);
+
 		return (arg) -> {
 			log.info("----------");
 			log.info("----------");
@@ -31,6 +43,12 @@ public class BackendFunDpApplication {
 			for (Funcionario f : funcionarioService.getFuncionariosByDepartamentoNome("suporte")) {
 				log.info(f.toString());
 			}
+
+			// Salve o novo Funcionario
+			log.info("----------");
+			log.info("----------");
+			funcionarioService.save(novoFuncionario);
+			log.info("Novo funcionário salvo: " + novoFuncionario.toString());
 
 			log.info("----------");
 			log.info("----------");

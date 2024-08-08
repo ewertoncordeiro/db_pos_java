@@ -77,8 +77,8 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
     int updateDepartamento(@Param("departamentoAtualId") Long departamentoAtualId, @Param("novoDepartamentoId") Long novoDepartamentoId);
 
     //4- deletar funcionarios
-    @Modifying
-    @Transactional
+    @Modifying // Indica que a consulta modifica dados na base, como um DELETE, UPDATE, etc.
+    @Transactional  //garante que o método seja executado dentro de uma transação. O Spring gerencia o início e o fim da transação automaticamente.
     @Query("DELETE FROM Funcionario f WHERE f.departamento.codDp = :departamentoId")
     int deleteByDepartamentoId(@Param("departamentoId") Long departamentoId);
 }

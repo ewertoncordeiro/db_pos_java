@@ -9,12 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
+@Service  //Marca a classe como um componente de serviço gerenciado pelo contêiner do Spring
 @Transactional
 
 public class FuncionarioService {
 
-    @Autowired
+    @Autowired  // Essa anotação instrui o Spring a injetar a dependência FuncionarioRepository no construtor de FuncionarioService. O Spring cria e gerencia a instância de FuncionarioRepository e a fornece automaticamente ao serviço
     private FuncionarioRepository funcionarioRepository;
 
     public Funcionario getFuncionariosByNomeAndQtdDependentes(String nome, Integer qtdDependentes) {
